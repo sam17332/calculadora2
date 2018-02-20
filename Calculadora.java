@@ -14,22 +14,23 @@ public class Calculadora implements CalculadoraI {
      * @param esp
      * @return Valor de la operacion realizada
      */
-    public String calcular(String esp){
+    public StackFactory SF = new StackFactory();
+    public ListFactory LF = new ListFactory();
+    
+    public String calcular(String esp, String tipo){
         String respuesta = "";
-        Stack<String> pila = new StackVector<String>();
-        Stack<Integer> evaluador = new StackVector<Integer>();
         Boolean error = false;
-        
         String[] cadena = esp.split(" ");
         String caracter;
-        
-        // Metemos al stack los elementos en orden inverso.
-        for(int i= cadena.length - 1; i >= 0; i--){
+        if (tipo == "1" || tipo == "2"){
+            StackA<String> pila = SF.Implementacion(tipo);
+            StackA<Integer> evaluador = SF.Implementacion(tipo);
+            
+            for(int i= cadena.length - 1; i >= 0; i--){
             caracter = cadena[i];
             pila.push(caracter);
-        }
-        
-        while (!pila.empty()) {
+            
+            while (!pila.empty()) {
             if ("0123456789".contains(pila.peek())) {
                 // Si el peek() es un numero
                 evaluador.push(Integer.parseInt(pila.pop()));
@@ -80,5 +81,14 @@ public class Calculadora implements CalculadoraI {
             //en caso de que error = true (hay una division con 0 como el denominador).
             return "Error";
         }
+        }
+            
+        }else if(tipo == "3" || tipo == "4"){
+            ListA<String> lista = LF.Implementacion(tipo);
+            ListA<Integer> evaluador = LF.Implementacion(tipo);
+        }
+        
+        // Metemos al stack los elementos en orden inverso.
+        return "";
     }
 }

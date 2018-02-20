@@ -18,5 +18,7 @@ public abstract class ListA<E> implements List<E> {
         return size() == 0;
     }
     
-    
+    public boolean contains(E value){
+    return false;
+}
 }

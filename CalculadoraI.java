@@ -9,5 +9,5 @@
  * @author USUARIO
  */
 public interface CalculadoraI {
-    public String calcular(String esp);
+    public String calcular(String esp, String tipo);
 }

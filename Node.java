@@ -33,4 +33,8 @@ public class Node<E> {
     public void setValue(E value){
         data = value;
     }
+    
+    public Node<E> next(){
+        return nextElement;
+    }
 }
