@@ -17,14 +17,14 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException, IOException {
         // TODO code application logic here
         Calculadora main = new Calculadora();
-        File opera = new File(System.getProperty("user.dir")+"\\"+"datos.txt");
+        File opera = new File(System.getProperty("user.dir")+"\\"+"prueba.txt");
         FileReader leer = new FileReader(opera);
         BufferedReader buff = new BufferedReader(leer);
         
         String linea;
         while((linea = buff.readLine()) != null){
           System.out.println(linea);
-          System.out.println("Respuesta: " + main.calcular(linea) + "\n");
+          System.out.println("Respuesta: " + main.calcular(linea,"3") + "\n");
         }
 
         

@@ -29,7 +29,7 @@ public class Calculadora implements CalculadoraI {
             for(int i= cadena.length - 1; i >= 0; i--){
             caracter = cadena[i];
             pila.push(caracter);
-            
+            }
             while (!pila.empty()) {
             if ("0123456789".contains(pila.peek())) {
                 // Si el peek() es un numero
@@ -81,12 +81,68 @@ public class Calculadora implements CalculadoraI {
             //en caso de que error = true (hay una division con 0 como el denominador).
             return "Error";
         }
-        }
             
         }else if(tipo == "3" || tipo == "4"){
             ListA<String> lista = LF.Implementacion(tipo);
             ListA<Integer> evaluador = LF.Implementacion(tipo);
+            lista.addFirst(cadena[cadena.length-1]);
+             for(int i= cadena.length - 2; i >= 0; i--){
+            caracter = cadena[i];
+            lista.addLast(caracter);
+             }
+            while (lista.isEmpty()) {
+            if ("0123456789".contains(lista.getFirst())) {
+                // Si el peek() es un numero
+                evaluador.addLast(Integer.parseInt(lista.removeFirst()));
+            } else {
+                // Si no es un numero
+                caracter = lista.removeFirst();
+                switch (caracter.charAt(0)) {
+                    case '+': {
+                        // Suma.
+                        evaluador.addLast((evaluador.removeFirst() + evaluador.removeFirst()));
+                        break;
+                    }
+                    case '-': {
+                        // Resta.
+                        evaluador.addLast((evaluador.removeFirst() - evaluador.removeFirst()));
+                        break;
+                    }
+                    case '*': {
+                        // Multiplicacion.
+                        evaluador.addLast((evaluador.removeFirst() * evaluador.removeFirst()));
+                        break;
+                    }
+                    case '/': {
+                        // Division.
+                        int numerador = evaluador.removeFirst();
+                        int denominador = evaluador.removeFirst();
+                        // Evaluamos si no hay un error.
+                        if (denominador != 0) {
+                            // No hay error.
+                            evaluador.addLast((numerador / denominador));
+                        } else {
+                            // Hay error, si el 0 esta en el denominador, no hay solucion
+                            error = true;
+                            evaluador.addLast(0);
+                        }
+                        break;
+                    }
+                }
+            }
+           
         }
+        
+        
+        if (!error) {
+            //en caso de que error = false
+            return String.valueOf( evaluador.getFirst() );
+        } else {
+            //en caso de que error = true (hay una division con 0 como el denominador).
+            return "Error";
+        }
+        }
+        
         
         // Metemos al stack los elementos en orden inverso.
         return "";
