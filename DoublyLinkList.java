@@ -69,6 +69,7 @@ public E removeFirst()
 // post: removes value from tail of list
 {
    DoublyLinkNode<E> temp = head;
+   if(count>0)
    head = head.next();
    if (head == null) {
        tail = null;

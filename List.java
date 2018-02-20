@@ -18,6 +18,6 @@ public interface List<E> {
     public E getFirst();
     //public E getLast();
     public E removeFirst();
-    //public E removeLast();
+    public E removeLast();
     public boolean contains(E value);
 }

@@ -85,8 +85,8 @@ public class Calculadora implements CalculadoraI {
         }else if(tipo == "3" || tipo == "4"){
             ListA<String> lista = LF.Implementacion(tipo);
             ListA<Integer> evaluador = LF.Implementacion(tipo);
-            lista.addFirst(cadena[cadena.length-1]);
-             for(int i= cadena.length - 2; i >= 0; i--){
+            int re = 0;
+             for(int i= cadena.length - 1; i >= 0; i--){
             caracter = cadena[i];
             lista.addLast(caracter);
              }
@@ -96,27 +96,27 @@ public class Calculadora implements CalculadoraI {
                 evaluador.addLast(Integer.parseInt(lista.removeFirst()));
             } else {
                 // Si no es un numero
-                caracter = lista.removeFirst();
+                caracter = lista.removeLast();
                 switch (caracter.charAt(0)) {
                     case '+': {
                         // Suma.
-                        evaluador.addLast((evaluador.removeFirst() + evaluador.removeFirst()));
+                        evaluador.addLast((evaluador.removeLast() + evaluador.removeLast()));
                         break;
                     }
                     case '-': {
                         // Resta.
-                        evaluador.addLast((evaluador.removeFirst() - evaluador.removeFirst()));
+                        evaluador.addLast((evaluador.removeLast() - evaluador.removeLast()));
                         break;
                     }
                     case '*': {
                         // Multiplicacion.
-                        evaluador.addLast((evaluador.removeFirst() * evaluador.removeFirst()));
+                        evaluador.addLast((evaluador.removeLast() * evaluador.removeLast()));
                         break;
                     }
                     case '/': {
                         // Division.
-                        int numerador = evaluador.removeFirst();
-                        int denominador = evaluador.removeFirst();
+                        int numerador = evaluador.removeLast();
+                        int denominador = evaluador.removeLast();
                         // Evaluamos si no hay un error.
                         if (denominador != 0) {
                             // No hay error.
@@ -136,7 +136,7 @@ public class Calculadora implements CalculadoraI {
         
         if (!error) {
             //en caso de que error = false
-            return String.valueOf( evaluador.getFirst() );
+            return String.valueOf( evaluador.removeLast());
         } else {
             //en caso de que error = true (hay una division con 0 como el denominador).
             return "Error";

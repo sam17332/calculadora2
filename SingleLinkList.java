@@ -32,10 +32,26 @@ public class SingleLinkList<E> extends ListA<E> {
   public E removeFirst()
  {
      Node<E> temp = head;
-     if (count>0)
      head = head.next(); // move head down list
      count--;
      return temp.value();
+  }
+  
+  public E removeLast(){
+      if (head != null)
+     {
+         // pointer to possible tail
+         Node<E> finger = head;
+         Node<E> temp = finger;
+         while (finger != null)  
+         {
+                temp = finger;
+                finger = finger.next();
+         } 
+         temp.nextElement = null;
+         count --;
+         return finger.value();
+      }else return head.value();
   }
   
   public E getFirst()

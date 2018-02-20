@@ -11,7 +11,7 @@
 public class Node<E> {
     
     private E data;
-    private Node<E> nextElement;
+    public Node<E> nextElement;
     
     public Node(E v, Node<E> next){
         data = v;
